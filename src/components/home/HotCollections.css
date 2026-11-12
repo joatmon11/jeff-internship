@@ -1,0 +1,39 @@
+.hc-slide {
+    padding: 0 10px;
+}
+
+.hc-arrow {
+    position:absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    background: #fff;
+    color: #333;
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hc-arrow:hover {
+    background: #f2f2f2;
+}
+
+.hc-slider-wrap {
+    position: relative;
+}
+
+.hc-slider-wrap .hc-arrow-prev {
+    left: -10px;
+}
+
+.hc-slider-wrap .hc-arrow-next {
+    right: 10px;
+}
