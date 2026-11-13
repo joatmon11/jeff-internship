@@ -8,7 +8,7 @@ import "slick-carousel/slick/slick.css";
 import "./HotCollections.css";
 
 const NextArrow = ({ onClick }) => (
-  <button type="button" className="hc-arrow hc-arrow=next" onClick={onClick} aria-label="Next">
+  <button type="button" className="hc-arrow hc-arrow-next" onClick={onClick} aria-label="Next">
     &rsaquo;
   </button>
 );
