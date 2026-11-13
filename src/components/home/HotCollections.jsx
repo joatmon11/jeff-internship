@@ -19,6 +19,15 @@ const PrevArrow = ({ onClick }) => (
   </button>
 );
 
+const SkeletonCard = () => (
+  <div className="hc-skeleton-card">
+    <div className="hc-skeleton hc-skeleton-image"></div>
+    <div className="hc-skeleton hc-skeleton-avatar"></div>
+    <div className="hc-skeleton hc-skeleton-title"></div>
+    <div className="hc-skeleton hc-skeleton-code"></div>
+  </div>
+);
+
 const HotCollections = () => {
   const [collections, setCollections] = useState([0]);
   const [loading, setLoading] = useState(true);
@@ -58,12 +67,22 @@ const HotCollections = () => {
         <div className="row">
           <div className="col-lg-12">
             <div className="text-center">
-              <h2>New Hot Collections</h2>
+              <h2>Hot Collections</h2>
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
 
-          {loading && <div className="col-lg-12 text-center"><p>Loading...</p></div>}
+          {loading && (
+            <div className="col-lg-12 text-center" aria-busy="true">
+              <div className="hc-skeleton-row">
+                {[0, 1, 2, 3].map((n) => (
+                  <SkeletonCard key={n} />
+                ))}
+              </div>
+            </div>
+           )}
+
+
           {error && <div className="col-lg-12 text-center"><p>Error: {error}</p></div>}
 
 
