@@ -26,10 +26,17 @@ const SkeletonCard = () => (
   </div>
 );
 
+const getSlidesToShow = () => {
+  if (window.innerWidth <= 576) return 1;
+  if (window.innerWidth <= 992) return 2;
+  return 4;
+};
+
 const HotCollections = () => {
-  const [collections, setCollections] = useState([0]);
+  const [collections, setCollections] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [slidesToShow, setSlidesToShow] = useState(getSlidesToShow);
 
   useEffect(() => {
     const fetchCollections = async () => {
@@ -45,17 +52,19 @@ const HotCollections = () => {
     fetchCollections();
   }, []);
 
+  useEffect(() => {
+    const handleResize = () => setSlidesToShow(getSlidesToShow());
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const settings = {
     infinite: true,
-    slidesToShow: 4,
+    slidesToShow: slidesToShow,
     slidesToScroll: 1,
     speed: 500,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
-    responsive: [
-      { breakpoint: 992, settings: { slidesToShow: 2 } },
-      { breakpoint: 576, settings: { slidesToShow: 1 } },
-    ],
   };
 
   
@@ -86,7 +95,7 @@ const HotCollections = () => {
 
           {!loading && !error && (
             <div className="col-lg-12 hc-slider-wrap">
-              <Slider {...settings}>
+              <Slider key={slidesToShow} {...settings}>
                 {collections.map((collection) => (
                   <div key={collection.id}>
                     <div className="hc-slide">
