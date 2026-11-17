@@ -28,6 +28,7 @@
 
 .hc-slider-wrap {
     position: relative;
+    min-width: 0;
 }
 
 .hc-slider-wrap .hc-arrow-prev {
@@ -49,7 +50,7 @@
 
 .hc-skeleton-card {
     position: relative;
-    padding-bottom: 2-px;
+    padding-bottom: 20px;
     border-radius: 8px;
     background: #fff;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
@@ -104,13 +105,13 @@
     }
 }
 
-@media (max-width: 991px) {
+@media (max-width: 992px) {
   .hc-skeleton-row {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 575px) {
+@media (max-width: 576px) {
   .hc-skeleton-row {
     grid-template-columns: 1fr;
   }
