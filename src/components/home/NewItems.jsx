@@ -62,10 +62,18 @@ const SkeletonCard = () => (
   </div>
 );
 
+/*  Helper to fix window count issue on smaller screens */
+const getSlidesToShow = () => {
+  if (window.innerWidth <= 576) return 1;
+  if (window.innerWidth <= 992) return 2;
+  return 4;
+}
+
 const NewItems = () => {
   const [newItems, setNewItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [slidesToShow, setSlidesToShow] = useState(getSlidesToShow);
 
   useEffect(() => {
     const fetchNewItems = async () => {
@@ -84,17 +92,19 @@ const NewItems = () => {
     fetchNewItems();
   }, []);
 
+  useEffect(() => {
+    const handleResize = () => setSlidesToShow(getSlidesToShow());
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const settings = {
     infinite: true,
-    slidesToShow: 4,
+    slidesToShow: slidesToShow,
     slidesToScroll: 1,
     speed: 500,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
-    responsive: [
-      { breakpoint: 992, settings: { slidesToShow: 2 } },
-      { breakpoint: 576, settings: { slidesToShow: 1 } },
-    ],
   };
 
   return (
@@ -126,7 +136,7 @@ const NewItems = () => {
 
           {!loading && !error && (
             <div className="col-lg-12 ni-slider-wrap">
-              <Slider {...settings}>
+              <Slider key={slidesToShow} {...settings}>
                 {newItems.map((item) => (
                   <div key={item.id}>
                     <div className="ni-slide">
