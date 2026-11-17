@@ -118,3 +118,8 @@
         grid-template-columns: 1fr;
     }
 }
+
+.ni-slide .nft__item  .nft__item_wrap {
+    height: auto;
+    min-height: 350px;
+}
