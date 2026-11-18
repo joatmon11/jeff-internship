@@ -3,6 +3,20 @@ import { Link } from "react-router-dom";
 import Axios from "axios";
 import "./TopSellers.css";
 
+const SkeletonSeller = () => {
+  return (
+    <li>
+      <div className="author_list_pp">
+        <div className="ts-skeleton ts-skeleton-circle"></div>
+      </div>
+      <div className="author_list_info">
+        <div className="ts-skeleton ts-skeleton-name"></div>
+        <div className="ts-skeleton ts-skeleton-price"></div>
+      </div>
+    </li>
+  );
+};
+
 const TopSellers = () => {
   const [sellers, setSellers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -38,24 +52,28 @@ const TopSellers = () => {
             {error && <p className="text-center">Error: {error}</p>}
             {!error && (
               <ol className="author_list">
-                {sellers.map((seller) => (
-                  <li key={seller.id}>
-                    <div className="author_list_pp">
-                      <Link to="/author">
-                        <img
-                          className="lazy pp-author"
-                          src={seller.authorImage}
-                          alt={seller.authorName}
-                        />
-                        <i className="fa fa-check"></i>
-                      </Link>
-                    </div>
-                    <div className="author_list_info">
-                      <Link to="/author">{seller.authorName}</Link>
-                      <span>{seller.price} ETH</span>
-                    </div>
-                  </li>
-                ))}
+                {loading
+                  ? new Array(12)
+                      .fill(0)
+                      .map((_, index) => <SkeletonSeller key={index} />)
+                  : sellers.map((seller) => (
+                      <li key={seller.id}>
+                        <div className="author_list_pp">
+                          <Link to="/author">
+                            <img
+                              className="lazy pp-author"
+                              src={seller.authorImage}
+                              alt={seller.authorName}
+                            />
+                            <i className="fa fa-check"></i>
+                          </Link>
+                        </div>
+                        <div className="author_list_info">
+                          <Link to="/author">{seller.authorName}</Link>
+                          <span>{seller.price} ETH</span>
+                        </div>
+                      </li>
+                    ))}
               </ol>
             )}
           </div>
