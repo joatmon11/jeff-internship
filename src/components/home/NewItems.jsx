@@ -4,6 +4,7 @@ import Axios from "axios";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "./NewItems.css";
+import Skeleton from "../UI/Skeleton.jsx";
 
 const NextArrow = ({ onClick }) => (
   <button
@@ -36,9 +37,9 @@ const getTimeLeft = (expiryDate) => {
   const minutes = Math.floor((remaining / (1000 * 60)) % 60);
   const seconds = Math.floor((remaining / 1000) % 60);
   return `${hours}h ${minutes}m ${seconds}s`;
-}
+};
 
-const Countdown = ({ expiryDate}) => {
+const Countdown = ({ expiryDate }) => {
   const [timeLeft, setTimeLeft] = useState(getTimeLeft(expiryDate));
 
   useEffect(() => {
@@ -50,15 +51,22 @@ const Countdown = ({ expiryDate}) => {
   }, [expiryDate]);
 
   if (!timeLeft) return null;
-  return <div className="de_countdown">{timeLeft}</div>
+  return <div className="de_countdown">{timeLeft}</div>;
 };
 
 const SkeletonCard = () => (
-  <div className="ni-skeleton-card">
-    <div className="ni-skeleton ni-skeleton-image"></div>
-    <div className="ni-skeleton ni-skeleton-avatar"></div>
-    <div className="ni-skeleton ni-skeleton-title"></div>
-    <div className="ni-skeleton ni-skeleton-price"></div>
+  <div className="ni-slide">
+    <div className="nft__item">
+      <Skeleton width="100%" height="350px" borderRadius="8px" />
+      <div className="nft__item_info">
+        <div className="ni-skeleton-title">
+          <Skeleton width="60%" height="16px" borderRadius="4px" />
+        </div>
+        <div className="ni-skeleton-price">
+          <Skeleton width="30%" height="14px" borderRadius="4px" />
+        </div>
+      </div>
+    </div>
   </div>
 );
 
@@ -67,7 +75,7 @@ const getSlidesToShow = () => {
   if (window.innerWidth <= 576) return 1;
   if (window.innerWidth <= 992) return 2;
   return 4;
-}
+};
 
 const NewItems = () => {
   const [newItems, setNewItems] = useState([]);
@@ -118,90 +126,94 @@ const NewItems = () => {
             </div>
           </div>
 
-          {loading && (
-            <div className="col-lg-12 text-center" aria-busy="true">
-              <div className="ni-skeleton-row">
-                {[0, 1, 2, 3].map((n) => (
-                  <SkeletonCard key={n} />
-                ))}
-              </div>
-            </div>
-          )}
-
           {error && (
             <div className="col-lg-12 text-center">
               <p>Error: {error}</p>
             </div>
           )}
 
-          {!loading && !error && (
+          {!error && (
             <div className="col-lg-12 ni-slider-wrap">
-              <Slider key={slidesToShow} {...settings}>
-                {newItems.map((item) => (
-                  <div key={item.id}>
-                    <div className="ni-slide">
-                      <div className="nft__item">
-                        <div className="author_list_pp">
-                          <Link
-                            to="/author"
-                            data-bs-toggle="tooltip"
-                            data-bs-placement="top"
-                            title="Creator: Monica Lucas"
-                          >
-                            <img
-                              className="lazy"
-                              src={item.authorImage}
-                              alt=""
-                            />
-                            <i className="fa fa-check"></i>
-                          </Link>
-                        </div>
-                        <Countdown expiryDate={item.expiryDate} />
+              {loading ? (
+                <div
+                  className="ni-skeleton-row"
+                  style={{
+                    gridTemplateColumns: `repeat(${slidesToShow}, 1fr)`,
+                  }}
+                  aria-busy="true"
+                >
+                  {new Array(slidesToShow).fill(0).map((_, index) => (
+                    <SkeletonCard key={index} />
+                  ))}
+                </div>
+              ) : (
+                <Slider key={slidesToShow} {...settings}>
+                  {newItems.map((item) => (
+                    <div key={item.id}>
+                      <div className="ni-slide">
+                        <div className="nft__item">
+                          <div className="author_list_pp">
+                            <Link
+                              to="/author"
+                              data-bs-toggle="tooltip"
+                              data-bs-placement="top"
+                              title="Creator: Monica Lucas"
+                            >
+                              <img
+                                className="lazy"
+                                src={item.authorImage}
+                                alt=""
+                              />
+                              <i className="fa fa-check"></i>
+                            </Link>
+                          </div>
+                          <Countdown expiryDate={item.expiryDate} />
 
-                        <div className="nft__item_wrap">
-                          <div className="nft__item_extra">
-                            <div className="nft__item_buttons">
-                              <button>Buy Now</button>
-                              <div className="nft__item_share">
-                                <h4>Share</h4>
-                                <a href="" target="_blank" rel="noreferrer">
-                                  <i className="fa fa-facebook fa-lg"></i>
-                                </a>
-                                <a href="" target="_blank" rel="noreferrer">
-                                  <i className="fa fa-twitter fa-lg"></i>
-                                </a>
-                                <a href="">
-                                  <i className="fa fa-envelope fa-lg"></i>
-                                </a>
+                          <div className="nft__item_wrap">
+                            <div className="nft__item_extra">
+                              <div className="nft__item_buttons">
+                                <button>Buy Now</button>
+                                <div className="nft__item_share">
+                                  <h4>Share</h4>
+                                  <a href="" target="_blank" rel="noreferrer">
+                                    <i className="fa fa-facebook fa-lg"></i>
+                                  </a>
+                                  <a href="" target="_blank" rel="noreferrer">
+                                    <i className="fa fa-twitter fa-lg"></i>
+                                  </a>
+                                  <a href="">
+                                    <i className="fa fa-envelope fa-lg"></i>
+                                  </a>
+                                </div>
                               </div>
                             </div>
-                          </div>
 
-                          <Link to="/item-details">
-                            <img
-                              src={item.nftImage}
-                              className="lazy nft__item_preview"
-                              alt=""
-                            />
-                          </Link>
-                        </div>
-                        <div className="nft__item_info">
-                          <Link to="/item-details">
-                            <h4>{item.title}</h4>
-                          </Link>
-                          <div className="nft__item_price">
-                            {item.price} ETH
+                            <Link to="/item-details">
+                              <img
+                                src={item.nftImage}
+                                className="lazy nft__item_preview"
+                                alt=""
+                              />
+                            </Link>
                           </div>
-                          <div className="nft__item_like">
-                            <i className="fa fa-heart"></i>
-                            <span>{item.likes}</span>
+                          <div className="nft__item_info">
+                            <Link to="/item-details">
+                              <h4>{item.title}</h4>
+                            </Link>
+                            <div className="nft__item_price">
+                              {item.price} ETH
+                            </div>
+                            <div className="nft__item_like">
+                              <i className="fa fa-heart"></i>
+                              <span>{item.likes}</span>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))}
-              </Slider>
+                  ))}
+                </Slider>
+              )}
             </div>
           )}
         </div>

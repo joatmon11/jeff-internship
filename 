@@ -1,0 +1,31 @@
+[33mf98d356[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mrefactor-skeleton[m[33m)[m Using shared Skeleton in HotCollections and updated HotCollections.css
+[33m867ff61[m[33m ([m[1;31morigin/refactor-skeleton[m[33m)[m Using Skeleton in TopSellers, removed TopSellers.css as no longer needed.
+[33md460bb0[m Updated using Skeleton in NewItems
+[33m924c529[m Using shared Skeleton in NewItems
+[33m73476e7[m Corrected NewItems.jsx to use Skeleton.jsx component.  WI'll update NewItems.css next
+[33m0c57380[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m Simply added .jsx to the end of import ScrollToTop to correct error when displaying page before moving forward.
+[33mc75898e[m Merge pull request #5 from joatmon11/top-sellers
+[33m456956d[m[33m ([m[1;31morigin/top-sellers[m[33m, [m[1;32mtop-sellers[m[33m)[m Got a little ahead of myself with author page so I saved a bookmark of that work and then took everything back to steps where TopSellers video left off.  Will use the Author and AuthorItems work I did on an Author branch when I get to that video.
+[33m329a580[m[33m ([m[1;32mauthor-work-backup[m[33m)[m Save author page work for a later branch
+[33m5dfa9fe[m Worked Author.jsx and AuthorItems.jsx to show response.data from database and started refactoring Skeleton.jsx.  Will refactor Skeleton on HotCollections and NewItems another branch.
+[33m41c6013[m Added skeleton loading state, working the author links next.
+[33me2ac7de[m Started this section.  Added imports, added useState/useEffect, and mapped fetched data.  Also added Route to app.js for individual seller.authorId.  Will work skeleton state next
+[33m97d4463[m Merge pull request #4 from joatmon11/fix-slider-sizing
+[33mf6c82d3[m[33m ([m[1;31morigin/fix-slider-sizing[m[33m, [m[1;32mfix-slider-sizing[m[33m)[m Fixed HotCollections slider count on small screens
+[33mdb3bff3[m Added @media to the NewItems.css file to fix slider sizing on smaller screens.
+[33m8f32f23[m Initial code added to fix slider on smaller screens
+[33mc07b5b7[m Merge pull request #3 from joatmon11/newitems
+[33ma0ca67e[m[33m ([m[1;31morigin/newitems[m[33m, [m[1;32mnewitems[m[33m)[m Cleaned up unused React import in HotCollections
+[33mcffa571[m Finished New Items section but testing through Vercel
+[33m41d3212[m Used axios to access database and have mapped it to cards
+[33m4fb6105[m Merge pull request #2 from joatmon11/hotcollections-1
+[33m728ead8[m[33m ([m[1;31morigin/hotcollections-1[m[33m, [m[1;31morigin/hotcollections[m[33m, [m[1;32mhotcollections-1[m[33m)[m Added and tested skeleton loding state
+[33m03a0bb8[m Fixed buttons on slider
+[33mdbe5a11[m added slider and arrows but next arrow not in right position
+[33m72bb0ce[m Merge pull request #1 from joatmon11/jeff-onboarding
+[33mdcc6510[m[33m ([m[1;31morigin/jeff-onboarding[m[33m, [m[1;32mjeff-onboarding[m[33m)[m Onboarding practice
+[33mb7d08ef[m bug fix
+[33m29dd756[m starter code
+[33m1718fc2[m starter code
+[33m340c772[m starter code
+[33ma1289da[m first commit

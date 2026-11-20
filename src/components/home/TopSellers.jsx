@@ -1,17 +1,20 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Axios from "axios";
-import "./TopSellers.css";
+import Skeleton from "../UI/Skeleton.jsx"
+
 
 const SkeletonSeller = () => {
   return (
     <li>
       <div className="author_list_pp">
-        <div className="ts-skeleton ts-skeleton-circle"></div>
+        <Skeleton width="50px" height="50px" borderRadius="50%" />
       </div>
       <div className="author_list_info">
-        <div className="ts-skeleton ts-skeleton-name"></div>
-        <div className="ts-skeleton ts-skeleton-price"></div>
+        <div className="mb10">
+          <Skeleton width="110px" height="14px" borderRadius="4px" />
+        </div>
+        <Skeleton width="60px" height="12px" borderRadius="4px" />
       </div>
     </li>
   );
@@ -69,7 +72,9 @@ const TopSellers = () => {
                           </Link>
                         </div>
                         <div className="author_list_info">
-                          <Link to={`/author/${seller.authorId}`}></Link>
+                          <Link to={`/author/${seller.authorId}`}>
+                            {seller.authorName}
+                          </Link>
                           <span>{seller.price} ETH</span>
                         </div>
                       </li>
