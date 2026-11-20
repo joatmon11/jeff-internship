@@ -1,62 +1,59 @@
 .ni-slide {
-    padding: 0 10px;
+  padding: 0 10px;
 }
 
 .ni-arrow {
-    position:absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    border: 1px solid #ddd;
-    background: #fff;
-    color: #333;
-    font-size: 28px;
-    line-height: 1;
-    cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  background: #fff;
+  color: #333;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .ni-arrow:hover {
-    background: #f2f2f2;
+  background: #f2f2f2;
 }
 
 .ni-slider-wrap {
-    position: relative;
-    min-width: 0;
+  position: relative;
+  min-width: 0;
 }
 
 .ni-slider-wrap .ni-arrow-prev {
-    left: -10px;
+  left: -10px;
 }
 
 .ni-slider-wrap .ni-arrow-next {
-    right: -10px;
+  right: -10px;
 }
 
 /* Skeleton styles */
 
 .ni-skeleton-row {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    padding: 0 10px;
+  display: grid;
 }
 
 .ni-skeleton-title {
-    margin: 12px 0 8px;
+  margin: 12px 0 8px;
 }
 
 .ni-skeleton-price {
-    margin-bottom: 4px;
+  margin-bottom: 4px;
 }
 
-.ni-slide .nft__item  .nft__item_wrap {
-    height: auto;
-    min-height: 350px;
+.ni-slide .nft__item .nft__item_wrap {
+  height: auto;
+  min-height: 350px;
 }
