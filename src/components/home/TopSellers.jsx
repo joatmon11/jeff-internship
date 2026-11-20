@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Axios from "axios";
 import "./TopSellers.css";
 
+
 const SkeletonSeller = () => {
   return (
     <li>
