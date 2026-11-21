@@ -8,6 +8,7 @@ const ExploreItems = () => {
   const [exploreItems, setExploreItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [visibleCount, setVisibleCount] = useState(8);
 
   useEffect(() => {
     const fetchExploreItems = async () => {
@@ -25,6 +26,11 @@ const ExploreItems = () => {
 
     fetchExploreItems();
   }, []);
+
+  const handleLoadMore = (e) => {
+    e.preventDefault();
+    setVisibleCount((prev) => prev + 4);
+  };
 
   return (
     <>
@@ -44,7 +50,7 @@ const ExploreItems = () => {
       )}
 
       {!error &&
-        exploreItems.map((item) => (
+        exploreItems.slice(0, visibleCount).map((item) => (
           <div
             key={item.id}
             className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12 ei-item"
@@ -102,11 +108,18 @@ const ExploreItems = () => {
             </div>
           </div>
         ))}
-      <div className="col-md-12 text-center">
-        <Link to="" id="loadmore" className="btn-main lead">
-          Load more
-        </Link>
-      </div>
+      {visibleCount < exploreItems.length && (
+        <div className="col-md-12 text-center">
+          <Link
+            to=""
+            id="loadmore"
+            className="btn-main lead"
+            onClick={handleLoadMore}
+          >
+            Load more
+          </Link>
+        </div>
+      )}
     </>
   );
 };
