@@ -29,13 +29,16 @@ const ExploreItems = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [visibleCount, setVisibleCount] = useState(8);
+  const [filter, setFilter] = useState("");
 
   useEffect(() => {
     const fetchExploreItems = async () => {
+      setLoading(true);
+      const url = filter
+        ? `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=${filter}`
+        : "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore";
       try {
-        const response = await Axios.get(
-          "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore",
-        );
+        const response = await Axios.get(url);
         setExploreItems(response.data);
       } catch (err) {
         setError(err.message);
@@ -45,7 +48,12 @@ const ExploreItems = () => {
     };
 
     fetchExploreItems();
-  }, []);
+  }, [filter]);
+
+  const handleFilterChange = (e) => {
+    setFilter(e.target.value);
+    setVisibleCount(8);
+  };
 
   const handleLoadMore = (e) => {
     e.preventDefault();
@@ -55,7 +63,7 @@ const ExploreItems = () => {
   return (
     <>
       <div>
-        <select id="filter-items" defaultValue="">
+        <select id="filter-items" value={filter} onChange={handleFilterChange}>
           <option value="">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
           <option value="price_high_to_low">Price, High to Low</option>
@@ -130,7 +138,7 @@ const ExploreItems = () => {
                 </div>
               </div>
             )))}
-      {visibleCount < exploreItems.length && (
+      {!loading && visibleCount < exploreItems.length && (
         <div className="col-md-12 text-center">
           <Link
             to=""
