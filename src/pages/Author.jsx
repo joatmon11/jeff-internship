@@ -32,6 +32,7 @@ const Author = () => {
   const [author, setAuthor] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [following, setFollowing] = useState(false);
 
   useEffect(() => {
     if (!authorId) {
@@ -43,6 +44,7 @@ const Author = () => {
       setLoading(true);
       setError(null);
       setAuthor(null);
+      setFollowing(false);
       try {
         const response = await Axios.get(API_URL, {
           params: { author: authorId },
@@ -56,6 +58,11 @@ const Author = () => {
     };
     fetchAuthor();
   }, [authorId]);
+
+  const handleFollowClick = (e) => {
+    e.preventDefault();
+    setFollowing(!following);
+  };
 
   return (
     <div id="wrapper">
@@ -110,11 +117,16 @@ const Author = () => {
                             borderRadius="4px"
                           />
                         ) : (
-                          author && `${author.followers} followers`
+                          author &&
+                          `${author.followers + (following ? 1 : 0)} followers`
                         )}
                       </div>
-                      <Link to="#" className="btn-main">
-                        Follow
+                      <Link
+                        to="#"
+                        className="btn-main"
+                        onClick={handleFollowClick}
+                      >
+                        {following ? "Unfollow" : "Follow"}
                       </Link>
                     </div>
                   </div>
