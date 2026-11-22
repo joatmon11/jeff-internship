@@ -34,6 +34,7 @@ const ExploreItems = () => {
   useEffect(() => {
     const fetchExploreItems = async () => {
       setLoading(true);
+      setError(null);
       const url = filter
         ? `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=${filter}`
         : "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore";
