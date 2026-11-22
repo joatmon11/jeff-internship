@@ -1,0 +1,12 @@
+.ei-item .nft__item .nft__item_wrap {
+    height: auto;
+    min-height: 350px;
+}
+
+.ei-skeleton-title {
+    margin: 12px 0 8px;
+}
+
+.ei-skeleton-price {
+    margin-bottom: 4px;
+}
