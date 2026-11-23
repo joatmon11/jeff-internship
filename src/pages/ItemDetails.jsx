@@ -59,29 +59,27 @@ const ItemDetails = () => {
               <div className="row">
                 <div className="col-md-6 text-center">
                   <img
-                    src={nftImage}
+                    src={item.nftImage}
                     className="img-fluid img-rounded mb-sm-30 nft-image"
                     alt=""
                   />
                 </div>
                 <div className="col-md-6">
                   <div className="item_info">
-                    <h2>Rainbow Style #194</h2>
+                    <h2>{item.title}</h2>
 
                     <div className="item_info_counts">
                       <div className="item_info_views">
                         <i className="fa fa-eye"></i>
-                        100
+                        {item.views}
                       </div>
                       <div className="item_info_like">
                         <i className="fa fa-heart"></i>
-                        74
+                        {item.likes}
                       </div>
                     </div>
                     <p>
-                      doloremque laudantium, totam rem aperiam, eaque ipsa quae
-                      ab illo inventore veritatis et quasi architecto beatae
-                      vitae dicta sunt explicabo.
+                      {item.description}
                     </p>
                     <div className="d-flex flex-row">
                       <div className="mr40">
