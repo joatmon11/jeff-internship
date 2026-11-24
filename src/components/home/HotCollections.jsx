@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import Axios from "axios";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "./HotCollections.css";
 import Skeleton from "../UI/Skeleton.jsx";
-import AuthorItems from "../author/AuthorItems.jsx";
+
 
 const NextArrow = ({ onClick }) => (
   <button
@@ -65,7 +65,7 @@ const HotCollections = () => {
   useEffect(() => {
     const fetchCollections = async () => {
       try {
-        const response = await axios.get(
+        const response = await Axios.get(
           "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections",
         );
         setCollections(response.data);
@@ -132,7 +132,7 @@ const HotCollections = () => {
                       <div className="hc-slide">
                         <div className="nft_coll">
                           <div className="nft_wrap">
-                            <Link to="/item-details">
+                            <Link to={`/item-details/${collection.nftId}`}>
                               <img
                                 src={collection.nftImage}
                                 className="lazy img-fluid"
@@ -151,7 +151,7 @@ const HotCollections = () => {
                             <i className="fa fa-check"></i>
                           </div>
                           <div className="nft_coll_info">
-                            <Link to="/explore">
+                            <Link to={`/item-details/${collection.nftId}`}>
                               <h4>{collection.title}</h4>
                             </Link>
                             <span>ERC-{collection.code}</span>
