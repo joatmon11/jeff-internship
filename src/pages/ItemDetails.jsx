@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 import EthImage from "../images/ethereum.svg";
 import { Link, useParams } from "react-router-dom";
 import Axios from "axios";
-import AuthorImage from "../images/author_thumbnail.jpg";
-import nftImage from "../images/nftImage.jpg";
 
 const ItemDetails = () => {
   const { nftId } = useParams();
@@ -86,13 +84,13 @@ const ItemDetails = () => {
                         <h6>Owner</h6>
                         <div className="item_author">
                           <div className="author_list_pp">
-                            <Link to="/author">
+                            <Link to={`/author/${item.ownerId}`}>
                               <img className="lazy" src={item.ownerImage} alt="" />
                               <i className="fa fa-check"></i>
                             </Link>
                           </div>
                           <div className="author_list_info">
-                            <Link to="/author">{item.ownerName}</Link>
+                            <Link to={`/author/${item.ownerId}`}>{item.ownerName}</Link>
                           </div>
                         </div>
                       </div>
@@ -103,13 +101,13 @@ const ItemDetails = () => {
                         <h6>Creator</h6>
                         <div className="item_author">
                           <div className="author_list_pp">
-                            <Link to="/author">
+                            <Link to={`/author/${item.creatorId}`}>
                               <img className="lazy" src={item.creatorImage} alt="" />
                               <i className="fa fa-check"></i>
                             </Link>
                           </div>
                           <div className="author_list_info">
-                            <Link to="/author">{item.creatorName}</Link>
+                            <Link to={`/author/${item.creatorId}`}>{item.creatorName}</Link>
                           </div>
                         </div>
                       </div>
